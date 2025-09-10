@@ -3,6 +3,7 @@
 namespace problem_setting
 {
 constexpr const char *base_path = "results/";
+constexpr const char *error_filename = "error_filename.txt";
 
 
 constexpr double u_inlet = 1e-4; // Fixed to avoid compressibility error (Ma<<0.1)

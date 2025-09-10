@@ -259,7 +259,7 @@ PetscErrorCode compute_equilibrium(){
     PetscFunctionReturn(0);
 }
 
-PetscErrorCode collide(){
+/*PetscErrorCode collide(){
 
     PetscInt xs, ys, zs, xm, ym, zm;
     PetscFunctionBegin;
@@ -385,9 +385,9 @@ PetscErrorCode collide(){
     DMDAVecRestoreArray(macro_grid, U_z, &uz_array);
     PetscFunctionReturn(0);
 
-}
+}*/
 
-/*PetscErrorCode collide(){
+PetscErrorCode collide(){
 
     PetscInt xs, ys, zs, xm, ym, zm;
     PetscFunctionBegin;
@@ -406,7 +406,6 @@ PetscErrorCode collide(){
     for (PetscInt k = zs; k < zs + zm; ++k) {
         for (PetscInt j = ys; j < ys + ym; ++j) {
             for (PetscInt i = xs; i < xs + xm; ++i) {
-                double vx = ux_array[k][j][i];
 
                 for (int a = 0; a < q; a++) {
                     double d1 = 0.0;
@@ -426,7 +425,7 @@ PetscErrorCode collide(){
 
     PetscFunctionReturn(0);
 
-}*/
+}
 
 PetscErrorCode compute_convergence(int rank, int n) {
     double temp1_local = 0.0;
@@ -463,6 +462,7 @@ PetscErrorCode compute_convergence(int rank, int n) {
     if (rank == 0) {
         double err_con = std::sqrt(temp1_global / temp2_global);
         std::cout << "[# Iter " << n << "] Convergence error is " << err_con << std::endl;
+        write_to_file(error_filename, std::to_string(err_con));
     }
     PetscFunctionReturn(0);
 }
